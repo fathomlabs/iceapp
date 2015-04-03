@@ -1,0 +1,8 @@
+.DS_Store
+src/*war
+src/*zip
+src/*.tar.gz
+src/wildfly*
+src/ncbi*
+src/blast_binaries
+src/Postgres*
