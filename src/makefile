@@ -37,8 +37,13 @@ Postgres-$(POSTGRES_VERSION).zip:
 
 wildfly: wildfly-$(WILDFLY_VERSION).Final
 
-wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip
+wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip standalone_bg.sh
 	unzip -qq -o wildfly-$(WILDFLY_VERSION).Final.zip
+	cp standalone_bg.sh wildfly-$(WILDFLY_VERSION).Final/bin
+
+standalone_bg.sh
+	$(CURL) "https://gist.githubusercontent.com/Blahah/029d7a2cff3bf4d85971/raw/f8f83c0d02d1d51ed1b84c8e029231cd953cdc44/standalone_bg.sh"
+	chmod a+x standalone_bg.sh
 
 wildfly-$(WILDFLY_VERSION).Final.zip:
 	$(CURL) "http://download.jboss.org/wildfly/8.2.0.Final/wildfly-$(WILDFLY_VERSION).Final.zip"
@@ -48,8 +53,15 @@ wildfly-$(WILDFLY_VERSION).Final.zip:
 #################
 
 ice: ice-$(ICE_VERSION).war
-	cp ice-$(ICE_VERSION).war wildfly-$(WILDFLY_VERSION).Final/standalone/deployments/
-	touch wildfly-$(WILDFLY_VERSION).Final/standalone/deployments/ice-$(ICE_VERSION).war.dodeploy
+	mkdir ice.war
+	cp ice-$(ICE_VERSION).war ice.war
+  cd ice.war
+	unzip ice-$(ICE_VERSION).war
+	rm ice-$(ICE_VERSION).war
+	cp ../jboss-web.xml WEB-INF/jboss-web.xml
+	cd ..
+	cp -r ice.war wildfly-$(WILDFLY_VERSION).Final/standalone/deployments/
+	rm -rf ice.war
 
 ice-$(ICE_VERSION).war:
 	$(CURL) "https://github.com/JBEI/ice/releases/download/$(ICE_VERSION)/ice-$(ICE_VERSION).war"
