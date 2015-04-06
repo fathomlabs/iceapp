@@ -6,3 +6,5 @@ src/wildfly*
 src/ncbi*
 src/blast_binaries
 src/Postgres*
+tmp/
+*~
