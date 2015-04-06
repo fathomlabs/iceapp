@@ -8,3 +8,4 @@ src/blast_binaries
 src/Postgres*
 tmp/
 *~
+Pods
