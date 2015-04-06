@@ -37,13 +37,10 @@ Postgres-$(POSTGRES_VERSION).zip:
 
 wildfly: wildfly-$(WILDFLY_VERSION).Final
 
-wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip standalone_bg.sh
+wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip
 	unzip -qq -o wildfly-$(WILDFLY_VERSION).Final.zip
 	cp standalone_bg.sh wildfly-$(WILDFLY_VERSION).Final/bin
-
-standalone_bg.sh
-	$(CURL) "https://gist.githubusercontent.com/Blahah/029d7a2cff3bf4d85971/raw/f8f83c0d02d1d51ed1b84c8e029231cd953cdc44/standalone_bg.sh"
-	chmod a+x standalone_bg.sh
+	cp standalone-ice.xml wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/standalone.xml
 
 wildfly-$(WILDFLY_VERSION).Final.zip:
 	$(CURL) "http://download.jboss.org/wildfly/8.2.0.Final/wildfly-$(WILDFLY_VERSION).Final.zip"
