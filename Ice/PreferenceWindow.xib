@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreferenceWindowController">
+            <connections>
+                <outlet property="loginItemCheckbox" destination="TfQ-XB-g1D" id="S93-zg-9vj"/>
+                <outlet property="window" destination="1" id="lXV-Jm-jxb"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Ice Prefererences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="1">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
+            <rect key="contentRect" x="1387" y="848" width="480" height="83"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8CL-Ca-IvT">
+                        <rect key="frame" x="18" y="47" width="302" height="18"/>
+                        <buttonCell key="cell" type="check" title="Show Welcome Window when IceApp starts" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9PC-oS-riq">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="wU9-A3-jtb" name="value" keyPath="values.ShowWelcomeWindow" id="5bT-J7-8Fd"/>
+                        </connections>
+                    </button>
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TfQ-XB-g1D">
+                        <rect key="frame" x="18" y="18" width="266" height="18"/>
+                        <buttonCell key="cell" type="check" title="Start IceApp automatically after login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OZP-mj-nOO">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8CL-Ca-IvT" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20" symbolic="YES" id="4xC-BO-Pzc"/>
+                    <constraint firstItem="TfQ-XB-g1D" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="Acf-JZ-IPY"/>
+                    <constraint firstItem="8CL-Ca-IvT" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="LjT-bl-Zut"/>
+                    <constraint firstItem="TfQ-XB-g1D" firstAttribute="top" secondItem="8CL-Ca-IvT" secondAttribute="bottom" constant="15" id="Mye-qU-teq"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="Oq0-yH-HLz"/>
+            </connections>
+            <point key="canvasLocation" x="673" y="474.5"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="wU9-A3-jtb"/>
+    </objects>
+</document>

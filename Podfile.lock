@@ -1,0 +1,16 @@
+PODS:
+  - JSONKit (1.5pre)
+  - RaptureXML (1.0.1)
+  - Sparkle (1.9.0)
+
+DEPENDENCIES:
+  - JSONKit (~> 1.5pre)
+  - RaptureXML (~> 1.0.1)
+  - Sparkle (~> 1.9)
+
+SPEC CHECKSUMS:
+  JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
+  RaptureXML: b5c33c04c1a4adfd8ad0d5463329a31820596e82
+  Sparkle: 75bbbc5ab2d666f7f77c241afe7fd28364a8f9f7
+
+COCOAPODS: 0.36.0

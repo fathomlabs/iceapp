@@ -1,0 +1,830 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3609DA081853B31F00665ED2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3609DA071853B31F00665ED2 /* ScriptingBridge.framework */; };
+		97815F981AB9BFFB004DD1E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */; };
+		97815F991AB9BFFB004DD1E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97815F6E1AB9BFFB004DD1E8 /* InfoPlist.strings */; };
+		97815F9A1AB9BFFB004DD1E8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97815F701AB9BFFB004DD1E8 /* MainMenu.xib */; };
+		97815F9B1AB9BFFB004DD1E8 /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 97815F721AB9BFFB004DD1E8 /* status-off.png */; };
+		97815F9C1AB9BFFB004DD1E8 /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97815F741AB9BFFB004DD1E8 /* status-off@2x.png */; };
+		97815F9D1AB9BFFB004DD1E8 /* status-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 97815F761AB9BFFB004DD1E8 /* status-on.png */; };
+		97815F9E1AB9BFFB004DD1E8 /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97815F781AB9BFFB004DD1E8 /* status-on@2x.png */; };
+		97815FA01AB9BFFB004DD1E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F7B1AB9BFFB004DD1E8 /* main.m */; };
+		97815FA11AB9BFFB004DD1E8 /* PGApplicationMover.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F7D1AB9BFFB004DD1E8 /* PGApplicationMover.m */; };
+		97815FA21AB9BFFB004DD1E8 /* PGShellProfileUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F7F1AB9BFFB004DD1E8 /* PGShellProfileUpdater.m */; };
+		97815FA41AB9BFFB004DD1E8 /* Ice.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 97815F821AB9BFFB004DD1E8 /* Ice.entitlements */; };
+		97815FA51AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F841AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.m */; };
+		97815FA61AB9BFFB004DD1E8 /* PostgresServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F871AB9BFFB004DD1E8 /* PostgresServer.m */; };
+		97815FA71AB9BFFB004DD1E8 /* IceStatusMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97815F881AB9BFFB004DD1E8 /* IceStatusMenuItemView.xib */; };
+		97815FA81AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F8A1AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.m */; };
+		97815FA91AB9BFFB004DD1E8 /* PreferenceWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97815F8B1AB9BFFB004DD1E8 /* PreferenceWindow.xib */; };
+		97815FAA1AB9BFFB004DD1E8 /* PreferenceWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F8D1AB9BFFB004DD1E8 /* PreferenceWindowController.m */; };
+		97815FAB1AB9BFFB004DD1E8 /* RecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F8F1AB9BFFB004DD1E8 /* RecoveryAttempter.m */; };
+		97815FAC1AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F931AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.m */; };
+		97815FAE1AB9BFFB004DD1E8 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97815F951AB9BFFB004DD1E8 /* WelcomeWindow.xib */; };
+		97815FAF1AB9BFFB004DD1E8 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F971AB9BFFB004DD1E8 /* WelcomeWindowController.m */; };
+		97D27DAC1ABA507D00874C5A /* Ice.icns in Resources */ = {isa = PBXBuildFile; fileRef = 97D27DAB1ABA507D00874C5A /* Ice.icns */; };
+		97D27DBC1ABB019C00874C5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97D27DB31ABB019C00874C5A /* InfoPlist.strings */; };
+		97D27DBD1ABB019C00874C5A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97D27DB51ABB019C00874C5A /* MainMenu.xib */; };
+		97D27DBE1ABB019C00874C5A /* IceHelper-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97D27DB71ABB019C00874C5A /* IceHelper-Info.plist */; };
+		97D27DC01ABB019C00874C5A /* IceHelper.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 97D27DBA1ABB019C00874C5A /* IceHelper.entitlements */; };
+		97D27DC11ABB02D000874C5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D27DB21ABB019C00874C5A /* AppDelegate.m */; };
+		97D27DC21ABB02D000874C5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D27DB91ABB019C00874C5A /* main.m */; };
+		97D27DC51ACF1C2A00874C5A /* WildFlyServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D27DC41ACF1C2A00874C5A /* WildFlyServer.m */; };
+		9A7C9481222C047F8215C80F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 427DA2A52F1D16444D5925FC /* libPods.a */; };
+		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
+		F884C8F0153C76F800CDCB09 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */; };
+		F884C8F1153C786D00CDCB09 /* IceHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* IceHelper.app */; };
+		F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BDC9015704C14004ECB52 /* Security.framework */; };
+		F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		3609DA0C1853B59D00665ED2 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.app";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).h",
+			);
+			script = "# script from SBSendEmail sample app\nsdef \"$INPUT_FILE_PATH\" | sdp -fh -o \"$DERIVED_FILES_DIR\" --basename \"$INPUT_FILE_BASE\" --bundleid `defaults read \"$INPUT_FILE_PATH/Contents/Info\" CFBundleIdentifier`";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		F87A4285153AB65200456130 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89739FF1538846600EAB41E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F87A426C153AB60C00456130;
+			remoteInfo = PostgresHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F87A4287153AB65800456130 /* Copy Helper Application */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				F884C8F1153C786D00CDCB09 /* IceHelper.app in Copy Helper Application */,
+			);
+			name = "Copy Helper Application";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A51153885A100EAB41E /* Copy XPC Service */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/XPCServices;
+			dstSubfolderSpec = 1;
+			files = (
+			);
+			name = "Copy XPC Service";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3609DA071853B31F00665ED2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		427DA2A52F1D16444D5925FC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EE9B7190A4621EE92A7B219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6BC8EDAEE0BE55C9439278F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		97815F6C1AB9BFFB004DD1E8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		97815F6F1AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		97815F711AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		97815F731AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
+		97815F751AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
+		97815F771AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
+		97815F791AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on@2x.png"; sourceTree = "<group>"; };
+		97815F7B1AB9BFFB004DD1E8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		97815F7C1AB9BFFB004DD1E8 /* PGApplicationMover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGApplicationMover.h; sourceTree = "<group>"; };
+		97815F7D1AB9BFFB004DD1E8 /* PGApplicationMover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGApplicationMover.m; sourceTree = "<group>"; };
+		97815F7E1AB9BFFB004DD1E8 /* PGShellProfileUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGShellProfileUpdater.h; sourceTree = "<group>"; };
+		97815F7F1AB9BFFB004DD1E8 /* PGShellProfileUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGShellProfileUpdater.m; sourceTree = "<group>"; };
+		97815F801AB9BFFB004DD1E8 /* Ice-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Ice-Info.plist"; sourceTree = "<group>"; };
+		97815F811AB9BFFB004DD1E8 /* Ice-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Ice-Prefix.pch"; sourceTree = "<group>"; };
+		97815F821AB9BFFB004DD1E8 /* Ice.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Ice.entitlements; sourceTree = "<group>"; };
+		97815F831AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostgresConnectionURLValueTransformer.h; sourceTree = "<group>"; };
+		97815F841AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostgresConnectionURLValueTransformer.m; sourceTree = "<group>"; };
+		97815F851AB9BFFB004DD1E8 /* IceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IceConstants.h; sourceTree = "<group>"; };
+		97815F861AB9BFFB004DD1E8 /* PostgresServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostgresServer.h; sourceTree = "<group>"; };
+		97815F871AB9BFFB004DD1E8 /* PostgresServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostgresServer.m; sourceTree = "<group>"; };
+		97815F881AB9BFFB004DD1E8 /* IceStatusMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IceStatusMenuItemView.xib; sourceTree = "<group>"; };
+		97815F891AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IceStatusMenuItemViewController.h; sourceTree = "<group>"; };
+		97815F8A1AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IceStatusMenuItemViewController.m; sourceTree = "<group>"; };
+		97815F8B1AB9BFFB004DD1E8 /* PreferenceWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferenceWindow.xib; sourceTree = "<group>"; };
+		97815F8C1AB9BFFB004DD1E8 /* PreferenceWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceWindowController.h; sourceTree = "<group>"; };
+		97815F8D1AB9BFFB004DD1E8 /* PreferenceWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceWindowController.m; sourceTree = "<group>"; };
+		97815F8E1AB9BFFB004DD1E8 /* RecoveryAttempter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryAttempter.h; sourceTree = "<group>"; };
+		97815F8F1AB9BFFB004DD1E8 /* RecoveryAttempter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryAttempter.m; sourceTree = "<group>"; };
+		97815F921AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		97815F931AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		97815F941AB9BFFB004DD1E8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		97815F951AB9BFFB004DD1E8 /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
+		97815F961AB9BFFB004DD1E8 /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
+		97815F971AB9BFFB004DD1E8 /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
+		97D27DAB1ABA507D00874C5A /* Ice.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Ice.icns; sourceTree = "<group>"; };
+		97D27DB11ABB019C00874C5A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		97D27DB21ABB019C00874C5A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		97D27DB41ABB019C00874C5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		97D27DB61ABB019C00874C5A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		97D27DB71ABB019C00874C5A /* IceHelper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IceHelper-Info.plist"; sourceTree = "<group>"; };
+		97D27DB81ABB019C00874C5A /* IceHelper-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IceHelper-Prefix.pch"; sourceTree = "<group>"; };
+		97D27DB91ABB019C00874C5A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		97D27DBA1ABB019C00874C5A /* IceHelper.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = IceHelper.entitlements; sourceTree = SOURCE_ROOT; };
+		97D27DC31ACF1C2A00874C5A /* WildFlyServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WildFlyServer.h; sourceTree = "<group>"; };
+		97D27DC41ACF1C2A00874C5A /* WildFlyServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WildFlyServer.m; sourceTree = "<group>"; };
+		F87A426D153AB60C00456130 /* IceHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IceHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		F88BDC8415704B22004ECB52 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		F88BDC8515704B22004ECB52 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		F88BDC9015704C14004ECB52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F8973A081538846600EAB41E /* Ice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8973A0C1538846600EAB41E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F8973A0F1538846600EAB41E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F8973A101538846600EAB41E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F8973A111538846600EAB41E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8973A3D1538851D00EAB41E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F87A426A153AB60C00456130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A051538846600EAB41E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3609DA081853B31F00665ED2 /* ScriptingBridge.framework in Frameworks */,
+				F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */,
+				F884C8F0153C76F800CDCB09 /* ServiceManagement.framework in Frameworks */,
+				F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */,
+				9A7C9481222C047F8215C80F /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		766E6634F35F4DC11C5D85BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EE9B7190A4621EE92A7B219 /* Pods.debug.xcconfig */,
+				6BC8EDAEE0BE55C9439278F6 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		97815F6B1AB9BFFB004DD1E8 /* Ice */ = {
+			isa = PBXGroup;
+			children = (
+				97815F6C1AB9BFFB004DD1E8 /* AppDelegate.h */,
+				97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */,
+				97815F6E1AB9BFFB004DD1E8 /* InfoPlist.strings */,
+				97815F701AB9BFFB004DD1E8 /* MainMenu.xib */,
+				97815F721AB9BFFB004DD1E8 /* status-off.png */,
+				97815F741AB9BFFB004DD1E8 /* status-off@2x.png */,
+				97815F761AB9BFFB004DD1E8 /* status-on.png */,
+				97815F781AB9BFFB004DD1E8 /* status-on@2x.png */,
+				97815F7B1AB9BFFB004DD1E8 /* main.m */,
+				97815F7C1AB9BFFB004DD1E8 /* PGApplicationMover.h */,
+				97815F7D1AB9BFFB004DD1E8 /* PGApplicationMover.m */,
+				97815F7E1AB9BFFB004DD1E8 /* PGShellProfileUpdater.h */,
+				97815F7F1AB9BFFB004DD1E8 /* PGShellProfileUpdater.m */,
+				97815F801AB9BFFB004DD1E8 /* Ice-Info.plist */,
+				97815F811AB9BFFB004DD1E8 /* Ice-Prefix.pch */,
+				97815F821AB9BFFB004DD1E8 /* Ice.entitlements */,
+				97815F831AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.h */,
+				97815F841AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.m */,
+				97815F851AB9BFFB004DD1E8 /* IceConstants.h */,
+				97815F861AB9BFFB004DD1E8 /* PostgresServer.h */,
+				97815F871AB9BFFB004DD1E8 /* PostgresServer.m */,
+				97D27DC31ACF1C2A00874C5A /* WildFlyServer.h */,
+				97D27DC41ACF1C2A00874C5A /* WildFlyServer.m */,
+				97815F881AB9BFFB004DD1E8 /* IceStatusMenuItemView.xib */,
+				97815F891AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.h */,
+				97815F8A1AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.m */,
+				97815F8B1AB9BFFB004DD1E8 /* PreferenceWindow.xib */,
+				97815F8C1AB9BFFB004DD1E8 /* PreferenceWindowController.h */,
+				97815F8D1AB9BFFB004DD1E8 /* PreferenceWindowController.m */,
+				97815F8E1AB9BFFB004DD1E8 /* RecoveryAttempter.h */,
+				97815F8F1AB9BFFB004DD1E8 /* RecoveryAttempter.m */,
+				97815F901AB9BFFB004DD1E8 /* Vendor */,
+				97815F951AB9BFFB004DD1E8 /* WelcomeWindow.xib */,
+				97815F961AB9BFFB004DD1E8 /* WelcomeWindowController.h */,
+				97815F971AB9BFFB004DD1E8 /* WelcomeWindowController.m */,
+			);
+			path = Ice;
+			sourceTree = "<group>";
+		};
+		97815F901AB9BFFB004DD1E8 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				97815F911AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations */,
+				97815F941AB9BFFB004DD1E8 /* Sparkle.framework */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		97815F911AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations */ = {
+			isa = PBXGroup;
+			children = (
+				97815F921AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.h */,
+				97815F931AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.m */,
+			);
+			path = "NSFileManager+DirectoryLocations";
+			sourceTree = "<group>";
+		};
+		97D27DB01ABB019C00874C5A /* IceHelper */ = {
+			isa = PBXGroup;
+			children = (
+				97D27DBA1ABB019C00874C5A /* IceHelper.entitlements */,
+				97D27DB11ABB019C00874C5A /* AppDelegate.h */,
+				97D27DB21ABB019C00874C5A /* AppDelegate.m */,
+				97D27DB31ABB019C00874C5A /* InfoPlist.strings */,
+				97D27DB51ABB019C00874C5A /* MainMenu.xib */,
+				97D27DB71ABB019C00874C5A /* IceHelper-Info.plist */,
+				97D27DB81ABB019C00874C5A /* IceHelper-Prefix.pch */,
+				97D27DB91ABB019C00874C5A /* main.m */,
+			);
+			path = IceHelper;
+			sourceTree = "<group>";
+		};
+		F88BDC8315704B22004ECB52 /* NSFileManager+DirectoryLocations */ = {
+			isa = PBXGroup;
+			children = (
+				F88BDC8415704B22004ECB52 /* NSFileManager+DirectoryLocations.h */,
+				F88BDC8515704B22004ECB52 /* NSFileManager+DirectoryLocations.m */,
+			);
+			name = "NSFileManager+DirectoryLocations";
+			path = "Postgres/Vendor/NSFileManager+DirectoryLocations";
+			sourceTree = "<group>";
+		};
+		F89739FD1538846600EAB41E = {
+			isa = PBXGroup;
+			children = (
+				97D27DB01ABB019C00874C5A /* IceHelper */,
+				97D27DAB1ABA507D00874C5A /* Ice.icns */,
+				97815F6B1AB9BFFB004DD1E8 /* Ice */,
+				F8973A32153884AC00EAB41E /* Vendor */,
+				F8973A0B1538846600EAB41E /* Frameworks */,
+				F8973A091538846600EAB41E /* Products */,
+				766E6634F35F4DC11C5D85BA /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		F8973A091538846600EAB41E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A081538846600EAB41E /* Ice.app */,
+				F87A426D153AB60C00456130 /* IceHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8973A0B1538846600EAB41E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3609DA071853B31F00665ED2 /* ScriptingBridge.framework */,
+				F88BDC9015704C14004ECB52 /* Security.framework */,
+				F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */,
+				F8973A0C1538846600EAB41E /* Cocoa.framework */,
+				F8973A3D1538851D00EAB41E /* Foundation.framework */,
+				F8973A0E1538846600EAB41E /* Other Frameworks */,
+				427DA2A52F1D16444D5925FC /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8973A0E1538846600EAB41E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A0F1538846600EAB41E /* AppKit.framework */,
+				F8973A101538846600EAB41E /* CoreData.framework */,
+				F8973A111538846600EAB41E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F8973A32153884AC00EAB41E /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F88BDC8315704B22004ECB52 /* NSFileManager+DirectoryLocations */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F87A426C153AB60C00456130 /* IceHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F87A4282153AB60C00456130 /* Build configuration list for PBXNativeTarget "IceHelper" */;
+			buildPhases = (
+				F87A4269153AB60C00456130 /* Sources */,
+				F87A426A153AB60C00456130 /* Frameworks */,
+				F87A426B153AB60C00456130 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IceHelper;
+			productName = PostgresHelper;
+			productReference = F87A426D153AB60C00456130 /* IceHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8973A071538846600EAB41E /* Ice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8973A261538846600EAB41E /* Build configuration list for PBXNativeTarget "Ice" */;
+			buildPhases = (
+				C7462CC7D0B92D9BD275C0A9 /* Check Pods Manifest.lock */,
+				36B958C11861A2F9007BBB36 /* Create Apple Script Headers for Terminal */,
+				F8973A041538846600EAB41E /* Sources */,
+				F8973A051538846600EAB41E /* Frameworks */,
+				F8973A061538846600EAB41E /* Resources */,
+				F8973A51153885A100EAB41E /* Copy XPC Service */,
+				F87A4287153AB65800456130 /* Copy Helper Application */,
+				3671343617C8FFBB003BBA08 /* Copy Postgres, Wildfly, ICE, BLAST */,
+				3668913E183CC1E800A3FA19 /* Codesign binaries & libraries */,
+				4A3C50C3E3C7C774B7EFC444 /* Copy Pods Resources */,
+			);
+			buildRules = (
+				3609DA0C1853B59D00665ED2 /* PBXBuildRule */,
+			);
+			dependencies = (
+				F87A4286153AB65200456130 /* PBXTargetDependency */,
+			);
+			name = Ice;
+			productName = Postgres;
+			productReference = F8973A081538846600EAB41E /* Ice.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F89739FF1538846600EAB41E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				TargetAttributes = {
+					F87A426C153AB60C00456130 = {
+						DevelopmentTeam = NG8T8L929D;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					F8973A071538846600EAB41E = {
+						DevelopmentTeam = NG8T8L929D;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F8973A021538846600EAB41E /* Build configuration list for PBXProject "Ice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F89739FD1538846600EAB41E;
+			productRefGroup = F8973A091538846600EAB41E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8973A071538846600EAB41E /* Ice */,
+				F87A426C153AB60C00456130 /* IceHelper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F87A426B153AB60C00456130 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A061538846600EAB41E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97815FAE1AB9BFFB004DD1E8 /* WelcomeWindow.xib in Resources */,
+				97D27DBC1ABB019C00874C5A /* InfoPlist.strings in Resources */,
+				97815F9D1AB9BFFB004DD1E8 /* status-on.png in Resources */,
+				97815FA71AB9BFFB004DD1E8 /* IceStatusMenuItemView.xib in Resources */,
+				97815F9E1AB9BFFB004DD1E8 /* status-on@2x.png in Resources */,
+				97D27DAC1ABA507D00874C5A /* Ice.icns in Resources */,
+				97D27DBE1ABB019C00874C5A /* IceHelper-Info.plist in Resources */,
+				97815FA91AB9BFFB004DD1E8 /* PreferenceWindow.xib in Resources */,
+				97815F9C1AB9BFFB004DD1E8 /* status-off@2x.png in Resources */,
+				97815FA41AB9BFFB004DD1E8 /* Ice.entitlements in Resources */,
+				97D27DC01ABB019C00874C5A /* IceHelper.entitlements in Resources */,
+				97815F9B1AB9BFFB004DD1E8 /* status-off.png in Resources */,
+				97815F991AB9BFFB004DD1E8 /* InfoPlist.strings in Resources */,
+				97D27DBD1ABB019C00874C5A /* MainMenu.xib in Resources */,
+				97815F9A1AB9BFFB004DD1E8 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3668913E183CC1E800A3FA19 /* Codesign binaries & libraries */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Codesign binaries & libraries";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\n\n#set -e\n\n#EXECUTABLE_TARGET_DIR=\"$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH\"\n\n#cd \"$EXECUTABLE_TARGET_DIR\"\n\n#for binary_file in \"bin/\"* \"lib/\"*.dylib \"lib/postgresql/\"*.so\n#do\n#  if [ -f $binary_file ]\n#  then\n#    codesign -f -s \"$CODE_SIGN_IDENTITY\" $binary_file\n#  fi\n#done\n";
+		};
+		3671343617C8FFBB003BBA08 /* Copy Postgres, Wildfly, ICE, BLAST */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Postgres, Wildfly, ICE, BLAST";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\n\nEXECUTABLE_SRC_DIR=\"$SOURCE_ROOT/src\"\nWILDFLY_SRC_DIR=\"$EXECUTABLE_SRC_DIR/wildfly-$WILDFLY_VERSION.Final\"\nBLAST_SRC_DIR=\"$EXECUTABLE_SRC_DIR/blast_binaries\"\nPOSTGRES_SRC_DIR=\"/Applications/Postgres.app/Contents/Versions/${POSTGRES_MAJOR_VERSION}\"\n\nEXECUTABLE_TARGET_DIR=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Versions\"\nWILDFLY_TARGET_DIR=\"$EXECUTABLE_TARGET_DIR/wildfly-$WILDFLY_VERSION.Final\"\nBLAST_TARGET_DIR=\"$EXECUTABLE_TARGET_DIR/blast_binaries\"\nPOSTGRES_TARGET_DIR=\"$EXECUTABLE_TARGET_DIR/postgres-${POSTGRES_MAJOR_VERSION}\"\n\n# POSTGRES\n\n# copy postgresql binaries\ncd \"${POSTGRES_SRC_DIR}/bin/\"\nmkdir -p \"$POSTGRES_TARGET_DIR/bin/\"\ncp clusterdb createdb createlang createuser dropdb droplang dropuser ecpg initdb oid2name pg_archivecleanup pg_basebackup pg_config pg_controldata pg_ctl pg_dump pg_dumpall pg_receivexlog pg_resetxlog pg_restore pg_standby pg_test_fsync pg_test_timing pg_upgrade pgbench postgres postmaster psql reindexdb vacuumdb vacuumlo \"$EXECUTABLE_TARGET_DIR/bin/\"\n\n# copy dynamic libraries only (no need for static libraries)\ncd \"${POSTGRES_SRC_DIR}/lib/\"\nmkdir -p \"$POSTGRES_TARGET_DIR/lib/\"\ncp -af *.dylib \"$POSTGRES_TARGET_DIR/lib/\"\ncp -afR postgresql \"$POSTGRES_TARGET_DIR/lib/\"\n\n#copy include, share\nrm -f \"$POSTGRES_TARGET_DIR/include/json\"\ncp -afR \"${POSTGRES_SRC_DIR}/include\" \"${POSTGRES_SRC_DIR}/share\" \"$POSTGRES_TARGET_DIR/\"\n\n# WILDFLY and ICE\n\n# copy wildfly with ICE preinstalled\nmkdir -p \"$WILDFLY_TARGET_DIR\"\ncp -afR \"$WILDFLY_SRC_DIR/\"* \"$WILDFLY_TARGET_DIR\"\n\n# BLAST\n\n# copy blast\ncp -afR \"$BLAST_SRC_DIR\" \"$BLAST_TARGET_DIR\"\n\n";
+		};
+		36B958C11861A2F9007BBB36 /* Create Apple Script Headers for Terminal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Apple Script Headers for Terminal";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Terminal.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "sdef /Applications/Utilities/Terminal.app | sdp -fh -o \"$DERIVED_FILE_DIR\" --basename Terminal --bundleid com.apple.Terminal";
+		};
+		4A3C50C3E3C7C774B7EFC444 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7462CC7D0B92D9BD275C0A9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F87A4269153AB60C00456130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97D27DC11ABB02D000874C5A /* AppDelegate.m in Sources */,
+				97D27DC21ABB02D000874C5A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A041538846600EAB41E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97D27DC51ACF1C2A00874C5A /* WildFlyServer.m in Sources */,
+				97815FA51AB9BFFB004DD1E8 /* PostgresConnectionURLValueTransformer.m in Sources */,
+				97815FA61AB9BFFB004DD1E8 /* PostgresServer.m in Sources */,
+				97815FAC1AB9BFFB004DD1E8 /* NSFileManager+DirectoryLocations.m in Sources */,
+				97815F981AB9BFFB004DD1E8 /* AppDelegate.m in Sources */,
+				97815FA01AB9BFFB004DD1E8 /* main.m in Sources */,
+				97815FAB1AB9BFFB004DD1E8 /* RecoveryAttempter.m in Sources */,
+				97815FA21AB9BFFB004DD1E8 /* PGShellProfileUpdater.m in Sources */,
+				97815FAF1AB9BFFB004DD1E8 /* WelcomeWindowController.m in Sources */,
+				97815FA11AB9BFFB004DD1E8 /* PGApplicationMover.m in Sources */,
+				97815FAA1AB9BFFB004DD1E8 /* PreferenceWindowController.m in Sources */,
+				97815FA81AB9BFFB004DD1E8 /* IceStatusMenuItemViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F87A4286153AB65200456130 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F87A426C153AB60C00456130 /* IceHelper */;
+			targetProxy = F87A4285153AB65200456130 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		97815F6E1AB9BFFB004DD1E8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F6F1AB9BFFB004DD1E8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		97815F701AB9BFFB004DD1E8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F711AB9BFFB004DD1E8 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		97815F721AB9BFFB004DD1E8 /* status-off.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F731AB9BFFB004DD1E8 /* en */,
+			);
+			name = "status-off.png";
+			sourceTree = "<group>";
+		};
+		97815F741AB9BFFB004DD1E8 /* status-off@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F751AB9BFFB004DD1E8 /* en */,
+			);
+			name = "status-off@2x.png";
+			sourceTree = "<group>";
+		};
+		97815F761AB9BFFB004DD1E8 /* status-on.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F771AB9BFFB004DD1E8 /* en */,
+			);
+			name = "status-on.png";
+			sourceTree = "<group>";
+		};
+		97815F781AB9BFFB004DD1E8 /* status-on@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97815F791AB9BFFB004DD1E8 /* en */,
+			);
+			name = "status-on@2x.png";
+			sourceTree = "<group>";
+		};
+		97D27DB31ABB019C00874C5A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97D27DB41ABB019C00874C5A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		97D27DB51ABB019C00874C5A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97D27DB61ABB019C00874C5A /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F87A4283153AB60C00456130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IceHelper/IceHelper-Prefix.pch";
+				INFOPLIST_FILE = "IceHelper/IceHelper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F87A4284153AB60C00456130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IceHelper/IceHelper-Prefix.pch";
+				INFOPLIST_FILE = "IceHelper/IceHelper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F8973A241538846600EAB41E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"PG_VERSION=\"$POSTGRES_VERSION\"",
+					"PG_MAJOR_VERSION=\"$POSTGRES_MAJOR_VERSION\"",
+					"WF_VERSION=\"$WILDFLY_VERSION\"",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ICEAPP_BUILD_VERSION = "$(POSTGRES_VERSION).$(POSTGRESAPP_MINOR_VERSION)";
+				ICEAPP_MINOR_VERSION = 0;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				POSTGRES_MAJOR_VERSION = 9.4;
+				POSTGRES_VERSION = 9.4beta3;
+				SDKROOT = macosx;
+				WILDFLY_VERSION = 8.2.0;
+			};
+			name = Debug;
+		};
+		F8973A251538846600EAB41E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PG_VERSION=\"$POSTGRES_VERSION\"",
+					"PG_MAJOR_VERSION=\"$POSTGRES_MAJOR_VERSION\"",
+					"WF_VERSION=\"$WILDFLY_VERSION\"",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ICEAPP_BUILD_VERSION = "$(POSTGRES_VERSION).$(POSTGRESAPP_MINOR_VERSION)";
+				ICEAPP_MINOR_VERSION = 0;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				POSTGRES_MAJOR_VERSION = 9.4;
+				POSTGRES_VERSION = 9.4beta3;
+				SDKROOT = macosx;
+				WILDFLY_VERSION = 8.2.0;
+			};
+			name = Release;
+		};
+		F8973A271538846600EAB41E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EE9B7190A4621EE92A7B219 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ice/Vendor",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ice/Ice-Prefix.pch";
+				INFOPLIST_FILE = "Ice/Ice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				POSTGRES_VERSION = 9.4.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WILDFLY_VERSION = 8.2.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F8973A281538846600EAB41E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BC8EDAEE0BE55C9439278F6 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ice/Vendor",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Ice/Ice-Prefix.pch";
+				INFOPLIST_FILE = "Ice/Ice-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				POSTGRES_VERSION = 9.4.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WILDFLY_VERSION = 8.2.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F87A4282153AB60C00456130 /* Build configuration list for PBXNativeTarget "IceHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87A4283153AB60C00456130 /* Debug */,
+				F87A4284153AB60C00456130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8973A021538846600EAB41E /* Build configuration list for PBXProject "Ice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8973A241538846600EAB41E /* Debug */,
+				F8973A251538846600EAB41E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8973A261538846600EAB41E /* Build configuration list for PBXNativeTarget "Ice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8973A271538846600EAB41E /* Debug */,
+				F8973A281538846600EAB41E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F89739FF1538846600EAB41E /* Project object */;
+}
