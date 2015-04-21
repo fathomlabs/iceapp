@@ -277,6 +277,8 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	if (controlTask.terminationStatus == 0) {
 		self.isRunning = YES;
 	}
+    
+    [self createWildFlyUserAndDB];
 	
 	return controlTask.terminationStatus == 0;
 }
@@ -361,17 +363,17 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(NSString*) createWildFlyUserAndDB {
     
-    NSString *newpass = [PostgresServer randomStringWithLength:20];
+    NSString *newpass = @"Pa55WorD";
     
     // create user
-    NSString *cmd = [NSString stringWithFormat:@"psql -c \"CREATE ROLE iceserver WITH ENCRYPTED PASSWORD '%@';\"", newpass];
+    NSString *cmd = [NSString stringWithFormat:@"psql --command=\\\"CREATE ROLE iceserver WITH ENCRYPTED PASSWORD '%@';\\\" --dbname=\\\"%@\\\"", newpass, _varPath];
     NSTask *task = [[NSTask alloc] init];
     task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
     [task launch];
     [task waitUntilExit];
     
     // create database
-    cmd = @"createdb --owner=iceserver icedb \"ICE server database\"";
+    cmd = [NSString stringWithFormat:@"createdb --owner=iceserver icedb \\\"ICE server database\\\" --dbname=\\\"%@\\\"", _varPath];
     task = [[NSTask alloc] init];
     task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
     [task launch];
