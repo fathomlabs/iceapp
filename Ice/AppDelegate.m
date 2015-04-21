@@ -196,12 +196,20 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarn;
     };
     
     WildFlyServerStatus serverStatus = [self.wfserver serverStatus];
-    
-    if (serverStatus == WildFlyServerRunning || serverStatus == WildFlyServerReloadRequired || serverStatus == WildFlyServerRestartRequired || serverStatus == WildFlyServerStarting) {
-        completionHandler(YES, nil);
+
+    if (serverStatus == WildFlyServerRunning ||
+        serverStatus == WildFlyServerReloadRequired ||
+        serverStatus == WildFlyServerRestartRequired ||
+        serverStatus == WildFlyServerStarting) {
+        // wildfly server is running - just launch the app
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self.wfserver deployIceApp];
+            dispatch_async(dispatch_get_main_queue(), ^{ completionHandler(YES, nil); });
+        });
+        
+    } else {
+        [self.wfserver startWithCompletionHandler:completionHandler];
     }
-    
-    [self.wfserver startWithCompletionHandler:completionHandler];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {

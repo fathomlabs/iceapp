@@ -41,6 +41,9 @@ typedef void (^WildFlyServerControlCompletionHandler)(BOOL success, NSError *err
 - (void) startWithCompletionHandler:(WildFlyServerControlCompletionHandler)completionBlock;
 - (void) stopWithCompletionHandler:(WildFlyServerControlCompletionHandler)completionBlock;
 
+- (BOOL) deployIceApp;
+- (BOOL) undeployIceApp;
+
 - (bool) checkIfRunning;
 - (WildFlyServerStatus) serverStatus;
 - (WildFlyAppStatus) appStatus:(NSString*)appname;
