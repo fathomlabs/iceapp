@@ -204,18 +204,13 @@
     DDLogDebug(@"Checking server status");
     NSString *cmd = @":read-attribute(name=server-state)";
     NSError *error = nil;
-    NSTask *task = [self runJbossCommand:cmd error:&error];
-    
-    if (task.terminationStatus == 0) {
-        NSData *resultData = [[task.standardOutput fileHandleForReading] readDataToEndOfFile];
-        NSString *resultString = [[NSString alloc] initWithData:resultData
-                                                       encoding:NSUTF8StringEncoding];
-        DDLogDebug(@"Server status result: %@", resultString);
-        NSDictionary *result = [resultString objectFromJSONString];
+    NSDictionary *result = [self runJbossCommand:cmd error:&error];
+    DDLogDebug(@"Server status: %@", result);
+    if (error) {
+        return WildFlyServerUnreachable;
+    } else {
         return [self parseServerStatus:result[@"result"]];
     }
-    
-    return WildFlyServerUnreachable;
 }
 
 - (WildFlyServerStatus) parseServerStatus:(NSString*)status {
@@ -239,17 +234,14 @@
 - (WildFlyAppStatus) appStatus:(NSString*)appname {
     NSString *cmd = @"/deployment=ice.war :read-attribute(name=status)";
     NSError *error = nil;
-    NSTask *task = [self runJbossCommand:cmd error:&error];
-    
-    if (task.terminationStatus == 0) {
-        NSData *resultData = [[task.standardOutput fileHandleForReading] readDataToEndOfFile];
-        NSString *resultString = [[NSString alloc] initWithData:resultData
-                                                 encoding:NSUTF8StringEncoding];
-        NSDictionary *result = [resultString objectFromJSONString];
+    NSDictionary *result = [self runJbossCommand:cmd error:&error];
+    DDLogDebug(@"Status of %@ app: %@", appname, result[@"result"]);
+
+    if (error) {
+        return WildFlyAppError;
+    } else {
         return [self parseAppStatus:result[@"result"]];
     }
-    
-    return WildFlyAppError;
 }
 
 - (WildFlyAppStatus) parseAppStatus:(NSString*)status {
