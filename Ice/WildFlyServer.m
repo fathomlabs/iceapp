@@ -129,6 +129,12 @@
 }
 
 - (BOOL) deployIceApp {
+    
+    if ([self appStatus:@"ice.war"] == WildFlyAppOK) {
+        DDLogDebug(@"ICE app already deployed");
+        return YES;
+    }
+
     DDLogInfo(@"Deploying ICE app");
     NSError *error = nil;
     NSString *addCmd = @"/deployment=ice.war:add(runtime-name=\\\"ice.war\\\", content=[{\\\"path\\\"=>\\\"../standalone/deployments/ice.war\\\",\\\"archive\\\"=>false}])";
