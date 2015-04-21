@@ -67,10 +67,11 @@
     controlTask.standardOutput = [[NSPipe alloc] init];
     controlTask.standardError = [[NSPipe alloc] init];
     [controlTask launch];
-    NSString *controlTaskError = [[NSString alloc] initWithData:[[controlTask.standardError fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
     [controlTask waitUntilExit];
-    DDLogDebug(@"Task stderr: %@", controlTaskError);
+    
     if (controlTask.terminationStatus != 0) {
+        NSString *controlTaskError = [[NSString alloc] initWithData:[[controlTask.standardError fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+
         DDLogError(@"Task error: %@ for cmd: %@", controlTaskError, cmd);
         NSMutableDictionary *errorUserInfo = [[NSMutableDictionary alloc] init];
         errorUserInfo[NSLocalizedDescriptionKey] = NSLocalizedString(errDesc, nil);
@@ -92,11 +93,15 @@
     NSString *fullCmd = [genericCmd stringByAppendingString:quotedCmd];
     DDLogDebug(@"Full quoted JBOSS cmd: %@", fullCmd);
     NSString *errorDesc = [@"Failed to run JBOSS-cli command: " stringByAppendingString:cmd];
+    
     NSTask *task = [self runTaskWithCommand:fullCmd arguments:@[] error:error errorDescription:errorDesc errorDomain:@"com.iceapp.WildFly.jboss-cli"];
-    NSData *responseData = [[task.standardOutput fileHandleForReading] readDataToEndOfFile];
-    NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    DDLogDebug(@"Command response: %@", responseString);
-    return [responseString objectFromJSONString];
+    
+    NSString *responseString = [[NSString alloc] initWithData:[[task.standardOutput fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+    NSString *jsonString = [responseString stringByReplacingOccurrencesOfString:@"=>" withString:@":"];
+    DDLogDebug(@"Command response: %@", jsonString);
+    NSDictionary *result = [jsonString objectFromJSONString];
+    DDLogDebug(@"Jboss result: %@", result);
+    return result;
 }
 
 #pragma mark - Starting server
