@@ -220,18 +220,16 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarn;
 		return NSTerminateCancel;
 	}
 	
-	if (!self.pgserver.isRunning) {
+	if (!self.pgserver.isRunning && !self.wfserver.isRunning) {
 		return NSTerminateNow;
 	}
-	
-    [self.pgserver stopWithCompletionHandler:^(BOOL success, NSError *error) {
-	    [sender replyToApplicationShouldTerminate:YES];
-    }];
     
     [self.wfserver stopWithCompletionHandler:^(BOOL success, NSError *error) {
-        [sender replyToApplicationShouldTerminate:YES];
+        [self.pgserver stopWithCompletionHandler:^(BOOL success, NSError *error) {
+            [sender replyToApplicationShouldTerminate:YES];
+        }];
     }];
-    
+
     // Set a timeout interval for postgres shutdown
     static NSTimeInterval const kTerminationTimeoutInterval = 3.0;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kTerminationTimeoutInterval * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
