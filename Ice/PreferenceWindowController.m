@@ -10,6 +10,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import "IceConstants.h"
 #import "PostgresServer.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @implementation PreferenceWindowController
 
@@ -51,7 +52,7 @@
     
     NSURL *helperApplicationURL = [[NSBundle mainBundle].bundleURL URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostgresHelper.app"];
     if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
-        NSLog(@"LSRegisterURL Failed");
+        DDLogError(@"LSRegisterURL Failed");
     }
     
     BOOL stateChangeSuccessful = SMLoginItemSetEnabled(CFSTR("com.postgresapp.PostgresHelper"), loginItemEnabled);

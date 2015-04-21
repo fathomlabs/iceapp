@@ -31,8 +31,15 @@
 #import "PGApplicationMover.h"
 #import "PGShellProfileUpdater.h"
 #import "PreferenceWindowController.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 #import "Terminal.h"
+
+#ifdef DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelWarn;
+#endif
 
 #ifdef SPARKLE
 #import <Sparkle/Sparkle.h>
@@ -86,6 +93,9 @@
     [self.checkForUpdatesMenuItem setEnabled:YES];
     [self.checkForUpdatesMenuItem setHidden:NO];
 #endif
+
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
         
     _statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     _statusBarItem.highlightMode = YES;
@@ -124,9 +134,9 @@
     
     PostgresServerControlCompletionHandler completionHandler = ^(BOOL success, NSError *error){
         if (success) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self startWildFlyServer];
-            });
+//            });
             [self.iceStatusMenuItemViewController setTitle:@"Postgres started, launching WildFly..."];
         } else {
             NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"Postgres startup failed.", nil)];
@@ -168,11 +178,11 @@
     
     WildFlyServerControlCompletionHandler completionHandler = ^(BOOL success, NSError *error) {
         if (success) {
-            [self.iceStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), self.pgserver.port] wasSuccessful:YES];
+            [self.iceStatusMenuItemViewController stopAnimatingWithTitle:@"Running on Port 8080" wasSuccessful:YES];
             [WelcomeWindowController sharedController].statusMessage = nil;
             [WelcomeWindowController sharedController].isBusy = NO;
             [WelcomeWindowController sharedController].canConnect = YES;
-            NSLog(@"wildfly server started");
+            DDLogInfo(@"wildfly server started");
         } else {
             NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"Wildfly startup failed.", nil)];
             [self.iceStatusMenuItemViewController stopAnimatingWithTitle:errorMessage wasSuccessful:NO];
@@ -181,7 +191,7 @@
             
             [[WelcomeWindowController sharedController] showWindow:self];
             [[WelcomeWindowController sharedController].window presentError:error modalForWindow:[WelcomeWindowController sharedController].window delegate:nil didPresentSelector:NULL contextInfo:NULL];
-            NSLog(@"wildfly server launch failed");
+            DDLogError(@"wildfly server launch failed");
         }
     };
     

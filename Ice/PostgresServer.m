@@ -27,6 +27,9 @@
 #import "PostgresServer.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "RecoveryAttempter.h"
+#include <stdlib.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
 
 #define xstr(a) str(a)
 #define str(a) #a
@@ -53,6 +56,19 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 @end
 
 @implementation PostgresServer
+
++(NSString *) randomStringWithLength: (int) len {
+    
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,/\"*&%$£@!_+-=[][}|";
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: (int)arc4random_uniform((int)[letters length])]];
+    }
+    
+    return randomString;
+}
 
 +(NSString*)standardDatabaseDirectory {
 	return [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingFormat:@"/var-%s", xstr(PG_MAJOR_VERSION)];
@@ -106,7 +122,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     static PostgresServer *_sharedServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-		NSString *binDirectory = [[NSBundle mainBundle].bundlePath stringByAppendingFormat:@"/Contents/Versions/%s/bin",xstr(PG_MAJOR_VERSION)];
+		NSString *binDirectory = [[NSBundle mainBundle].bundlePath stringByAppendingFormat:@"/Contents/Versions/postgres-%s/bin",xstr(PG_MAJOR_VERSION)];
 		NSString *databaseDirectory = [[NSUserDefaults standardUserDefaults] stringForKey:[PostgresServer dataDirectoryPreferenceKey]];
 		if (!databaseDirectory || [self statusOfDataDirectory:databaseDirectory] == PostgresDataDirectoryIncompatible) {
 			databaseDirectory = [self existingDatabaseDirectory];
@@ -196,6 +212,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 -(PostgresServerStatus)serverStatus {
 	NSTask *psqlTask = [[NSTask alloc] init];
 	psqlTask.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
+    DDLogDebug(psqlTask.launchPath);
 	psqlTask.arguments = @[
 						   [NSString stringWithFormat:@"-p%u", (unsigned)self.port],
 						   @"-A",
@@ -340,6 +357,27 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	}
 	
 	return task.terminationStatus == 0;
+}
+
+-(NSString*) createWildFlyUserAndDB {
+    
+    NSString *newpass = [PostgresServer randomStringWithLength:20];
+    
+    // create user
+    NSString *cmd = [NSString stringWithFormat:@"psql -c \"CREATE ROLE iceserver WITH ENCRYPTED PASSWORD '%@';\"", newpass];
+    NSTask *task = [[NSTask alloc] init];
+    task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
+    [task launch];
+    [task waitUntilExit];
+    
+    // create database
+    cmd = @"createdb --owner=iceserver icedb \"ICE server database\"";
+    task = [[NSTask alloc] init];
+    task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
+    [task launch];
+    [task waitUntilExit];
+    
+    return newpass;
 }
 
 -(NSString *)logfilePath {

@@ -14,15 +14,6 @@ all: postgres wildfly ice blast
 #########################
 
 postgres: /Applications/Postgres.app
-	# start postgres server temporarily
-	-/Applications/Postgres.app/Contents/Versions/9.4/bin/pg_ctl -D ~/Library/Application\ Support/Postgres/var-9.4/ start
-	sleep 3
-	# create user
-	-echo "CREATE ROLE iceserver WITH ENCRYPTED PASSWORD 'password';" | /Applications/Postgres.app/Contents/Versions/9.4/bin/psql
-	# create database
-	-/Applications/Postgres.app/Contents/Versions/9.4/bin/createdb --owner=iceserver icedb "ICE server database"
-	# stop database
-	- /Applications/Postgres.app/Contents/Versions/9.4/bin/pg_ctl -D ~/Library/Application\ Support/Postgres/var-9.4/ stop -m fast
 
 /Applications/Postgres.app: Postgres-$(POSTGRES_VERSION).zip
 	unzip -qq -o Postgres-$(POSTGRES_VERSION).zip
@@ -40,6 +31,7 @@ wildfly: wildfly-$(WILDFLY_VERSION).Final
 wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip
 	unzip -qq -o wildfly-$(WILDFLY_VERSION).Final.zip
 	cp standalone_bg.sh wildfly-$(WILDFLY_VERSION).Final/bin
+	rm wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/standalone*.xml
 	cp standalone-ice.xml wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/standalone.xml
 
 wildfly-$(WILDFLY_VERSION).Final.zip:
@@ -50,13 +42,12 @@ wildfly-$(WILDFLY_VERSION).Final.zip:
 #################
 
 ice: ice-$(ICE_VERSION).war
-	mkdir ice.war
-	cp ice-$(ICE_VERSION).war ice.war
-  cd ice.war
-	unzip ice-$(ICE_VERSION).war
-	rm ice-$(ICE_VERSION).war
-	cp ../jboss-web.xml WEB-INF/jboss-web.xml
-	cd ..
+	mkdir -p ice.war
+	cp ice-$(ICE_VERSION).war ice.war/ice-$(ICE_VERSION).war
+	cd ice.war; unzip -qq -o ice-$(ICE_VERSION).war
+	pwd
+	cp jboss-web.xml ice.war/WEB-INF/jboss-web.xml
+	cp hibernate.cfg.xml ice.war/WEB-INF/classes/hibernate.cfg.xml
 	cp -r ice.war wildfly-$(WILDFLY_VERSION).Final/standalone/deployments/
 	rm -rf ice.war
 
@@ -68,7 +59,7 @@ ice-$(ICE_VERSION).war:
 #################
 
 blast: ncbi-blast-$(BLAST_VERSION)
-	-mkdir blast_binaries
+	-mkdir -p blast_binaries
 	cp ncbi-blast-$(BLAST_VERSION)/bin/{makeblastdb,blastn,tblastx} blast_binaries/
 
 ncbi-blast-$(BLAST_VERSION): ncbi-blast-$(BLAST_VERSION)-universal-macosx.tar.gz
