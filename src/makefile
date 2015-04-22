@@ -31,6 +31,7 @@ wildfly: wildfly-$(WILDFLY_VERSION).Final
 wildfly-$(WILDFLY_VERSION).Final: wildfly-$(WILDFLY_VERSION).Final.zip
 	unzip -qq -o wildfly-$(WILDFLY_VERSION).Final.zip
 	cp standalone_bg.sh wildfly-$(WILDFLY_VERSION).Final/bin
+	cp iceserver.jks wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/iceserver.jks
 	rm wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/standalone*.xml
 	cp standalone-ice.xml wildfly-$(WILDFLY_VERSION).Final/standalone/configuration/standalone.xml
 

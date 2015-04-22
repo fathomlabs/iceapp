@@ -134,9 +134,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarn;
     
     PostgresServerControlCompletionHandler completionHandler = ^(BOOL success, NSError *error){
         if (success) {
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self startWildFlyServer];
-//            });
+            [self startWildFlyServer];
             [self.iceStatusMenuItemViewController setTitle:@"Postgres started, launching WildFly..."];
         } else {
             NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"Postgres startup failed.", nil)];

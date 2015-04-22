@@ -71,7 +71,9 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 }
 
 +(NSString*)standardDatabaseDirectory {
-	return [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingFormat:@"/var-%s", xstr(PG_MAJOR_VERSION)];
+	NSString *dir = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingFormat:@"/var-%s", xstr(PG_MAJOR_VERSION)];
+    DDLogDebug(@"Standard database directory: %@", dir);
+    return dir;
 }
 
 +(PostgresDataDirectoryStatus)statusOfDataDirectory:(NSString*)dir {
@@ -90,30 +92,6 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	return PostgresDataDirectoryIncompatible;
 }
 
-+(NSString*)existingDatabaseDirectory {
-	// This function tries to locate existing data directories with the same version
-	// It returns the first matching data directory
-	NSArray *applicationSupportDirectories = @[
-											   [[NSFileManager defaultManager] applicationSupportDirectory],
-											   [NSHomeDirectory() stringByAppendingString:@"/Library/Application Support/Postgres93"],
-											   [NSHomeDirectory() stringByAppendingString:@"/Library/Containers/com.heroku.Postgres/Data/Library/Application Support/Postgres"]
-											   ];
-	NSArray *dataDirNames = @[
-							  @"var",
-							  [NSString stringWithFormat:@"var-%s",xstr(PG_MAJOR_VERSION)]
-							  ];
-	for (NSString *applicationSupportDirectory in applicationSupportDirectories) {
-		for (NSString *dataDirName in dataDirNames) {
-			NSString *dataDirectoryPath = [applicationSupportDirectory stringByAppendingPathComponent:dataDirName];
-			PostgresDataDirectoryStatus status = [self statusOfDataDirectory:dataDirectoryPath];
-			if (status == PostgresDataDirectoryCompatible) {
-				return dataDirectoryPath;
-			}
-		}
-	}
-	return nil;
-}
-
 +(NSString*)dataDirectoryPreferenceKey {
 	return [[NSString stringWithFormat:@"%@%s", kIceDataDirectoryPreferenceKey, xstr(PG_MAJOR_VERSION)] stringByReplacingOccurrencesOfString:@"." withString:@""];
 }
@@ -124,9 +102,6 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     dispatch_once(&onceToken, ^{
 		NSString *binDirectory = [[NSBundle mainBundle].bundlePath stringByAppendingFormat:@"/Contents/Versions/postgres-%s/bin",xstr(PG_MAJOR_VERSION)];
 		NSString *databaseDirectory = [[NSUserDefaults standardUserDefaults] stringForKey:[PostgresServer dataDirectoryPreferenceKey]];
-		if (!databaseDirectory || [self statusOfDataDirectory:databaseDirectory] == PostgresDataDirectoryIncompatible) {
-			databaseDirectory = [self existingDatabaseDirectory];
-		}
 		if (!databaseDirectory) {
 			databaseDirectory = [self standardDatabaseDirectory];
 		}
@@ -144,6 +119,8 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     if (!self) {
         return nil;
     }
+    
+    DDLogDebug(@"Init PostgresServer with:\n\nbindir:\n\n%@\ndatadir:\n\n%@\n", executablesDirectory, databaseDirectory);
     
     _binPath = executablesDirectory;
     _varPath = databaseDirectory;
@@ -163,6 +140,35 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     }
 	
     return self;
+}
+
+#pragma mark - Command running
+- (NSTask*) runTaskWithCommand:(NSString*)cmd arguments:(NSArray*)args error:(NSError**)error errorDescription:(NSString*)errDesc errorDomain:(NSString*)errDomain {
+    DDLogDebug(@"Running task with cmd: %@", cmd);
+    NSTask *controlTask = [[NSTask alloc] init];
+    controlTask.launchPath = @"/bin/bash";
+    NSString *quotedCmd = [self.binPath stringByAppendingPathComponent:cmd];
+    controlTask.arguments = [@[@"-c", quotedCmd] arrayByAddingObjectsFromArray:args];
+    controlTask.standardOutput = [[NSPipe alloc] init];
+    controlTask.standardError = [[NSPipe alloc] init];
+    [controlTask launch];
+    [controlTask waitUntilExit];
+    
+    if (controlTask.terminationStatus != 0) {
+        NSString *controlTaskError = [[NSString alloc] initWithData:[[controlTask.standardError fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+        
+        DDLogError(@"Task error: %@ for cmd: %@", controlTaskError, cmd);
+        NSMutableDictionary *errorUserInfo = [[NSMutableDictionary alloc] init];
+        errorUserInfo[NSLocalizedDescriptionKey] = NSLocalizedString(errDesc, nil);
+        errorUserInfo[NSLocalizedRecoverySuggestionErrorKey] = controlTaskError;
+        errorUserInfo[NSLocalizedRecoveryOptionsErrorKey] = @[@"OK", @"Open Server Log"];
+        errorUserInfo[NSRecoveryAttempterErrorKey] = [[RecoveryAttempter alloc] init];
+        errorUserInfo[@"ServerLogRecoveryOptionIndex"] = @1;
+        errorUserInfo[@"ServerLogPath"] = self.logfilePath;
+        *error = [NSError errorWithDomain:errDomain code:controlTask.terminationStatus userInfo:errorUserInfo];
+    }
+    
+    return controlTask;
 }
 
 #pragma mark - Asynchronous Server Control Methods
@@ -185,15 +191,24 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 				if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(NO, error); });
 				return;
 			}
+
+            DDLogDebug(@"Creating user DB");
+            BOOL userdbmade = [self createIceUserAndDB:&error];
 			
-			BOOL createdUserDatabase = [self createUserDatabaseWithError:&error];
-			if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(createdUserDatabase, error); });
+			if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(userdbmade, error); });
 		}
 		else if (dataDirStatus==PostgresDataDirectoryCompatible) {
 			BOOL serverDidStart = [self startServerWithError:&error];
+            
+            DDLogDebug(@"Creating user DB");
+            [self createIceUserAndDB:&error];
+            
 			if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(serverDidStart, error); });
 		}
 		else {
+            DDLogDebug(@"Creating user DB");
+            [self createIceUserAndDB:&error];
+
 			if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(NO, nil); });
 		}
 		
@@ -262,7 +277,8 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	[controlTask launch];
 	NSString *controlTaskError = [[NSString alloc] initWithData:[[controlTask.standardError fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
 	[controlTask waitUntilExit];
-	
+    DDLogDebug(@"Server start cmd finished");
+
 	if (controlTask.terminationStatus != 0 && error) {
 		NSMutableDictionary *errorUserInfo = [[NSMutableDictionary alloc] init];
 		errorUserInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Could not start PostgreSQL server.",nil);
@@ -278,8 +294,6 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 		self.isRunning = YES;
 	}
     
-    [self createWildFlyUserAndDB];
-	
 	return controlTask.terminationStatus == 0;
 }
 
@@ -361,25 +375,25 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	return task.terminationStatus == 0;
 }
 
--(NSString*) createWildFlyUserAndDB {
+-(BOOL) createIceUserAndDB:(NSError**)err {
     
     NSString *newpass = @"Pa55WorD";
-    
+
     // create user
-    NSString *cmd = [NSString stringWithFormat:@"psql --command=\\\"CREATE ROLE iceserver WITH ENCRYPTED PASSWORD '%@';\\\" --dbname=\\\"%@\\\"", newpass, _varPath];
-    NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
-    [task launch];
-    [task waitUntilExit];
+    DDLogDebug(@"Creating postgres user");
+    NSString *cmd = [NSString stringWithFormat:@"psql --command=\"CREATE ROLE iceserver WITH LOGIN PASSWORD '%@';\"", newpass];
+    NSString *errDesc = @"Failed to create postgres user 'iceserver'";
+    NSString *errDom = @"com.iceapp.Postgres.create-user";
+    NSTask *task = [self runTaskWithCommand:cmd arguments:@[] error:err errorDescription:@"Failed" errorDomain:errDom];
     
     // create database
-    cmd = [NSString stringWithFormat:@"createdb --owner=iceserver icedb \\\"ICE server database\\\" --dbname=\\\"%@\\\"", _varPath];
-    task = [[NSTask alloc] init];
-    task.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
-    [task launch];
-    [task waitUntilExit];
+    DDLogDebug(@"Creating postgres database");
+    cmd = @"createdb --owner=iceserver icedb \"ICE server database\"";
+    errDesc = @"Failed to create postgres database 'icedb'";
+    errDom = @"com.iceapp.Postgres.create-db";
+    task = [self runTaskWithCommand:cmd arguments:@[] error:err errorDescription:@"Failed" errorDomain:errDom];
     
-    return newpass;
+    return task.terminationStatus == 0;
 }
 
 -(NSString *)logfilePath {
