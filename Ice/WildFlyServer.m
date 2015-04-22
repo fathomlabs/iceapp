@@ -130,14 +130,19 @@
 
 - (BOOL) deployIceApp {
     
-    if ([self appStatus:@"ice.war"] == WildFlyAppOK) {
+    WildFlyAppStatus status = [self appStatus:@"ice.war"];
+    if (status == WildFlyAppOK) {
         DDLogDebug(@"ICE app already deployed");
         return YES;
+    } else if (status == WildFlyAppStopped) {
+        [self undeployIceApp];
     }
 
     DDLogInfo(@"Deploying ICE app");
     NSError *error = nil;
-    NSString *addCmd = @"/deployment=ice.war:add(runtime-name=\\\"ice.war\\\", content=[{\\\"path\\\"=>\\\"../standalone/deployments/ice.war\\\",\\\"archive\\\"=>false}])";
+    NSString *warpath = [[NSBundle mainBundle].bundlePath stringByAppendingFormat:@"/Contents/Versions/wildfly-%s.Final/standalone/deployments/ice.war", xstr(WF_VERSION)];
+    NSString *addCmd = [NSString stringWithFormat:@"/deployment=ice.war:add(runtime-name=\\\"ice.war\\\", content=[{\\\"path\\\"=>\\\"%@\\\",\\\"archive\\\"=>false}])", warpath];
+    
     NSString *deployCmd = @"/deployment=ice.war:deploy";
     
     NSDictionary *result = [self runJbossCommand:addCmd error:&error];
