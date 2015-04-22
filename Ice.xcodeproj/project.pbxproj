@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3609DA081853B31F00665ED2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3609DA071853B31F00665ED2 /* ScriptingBridge.framework */; };
+		970E05E91AE7D15E00829AB6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 970E05E81AE7D15E00829AB6 /* Media.xcassets */; };
 		97815F981AB9BFFB004DD1E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */; };
 		97815F991AB9BFFB004DD1E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97815F6E1AB9BFFB004DD1E8 /* InfoPlist.strings */; };
 		97815F9A1AB9BFFB004DD1E8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97815F701AB9BFFB004DD1E8 /* MainMenu.xib */; };
@@ -98,6 +99,7 @@
 		427DA2A52F1D16444D5925FC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EE9B7190A4621EE92A7B219 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6BC8EDAEE0BE55C9439278F6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		970E05E81AE7D15E00829AB6 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = SOURCE_ROOT; };
 		97815F6C1AB9BFFB004DD1E8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		97815F6F1AB9BFFB004DD1E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		97815F6B1AB9BFFB004DD1E8 /* Ice */ = {
 			isa = PBXGroup;
 			children = (
+				970E05E81AE7D15E00829AB6 /* Media.xcassets */,
 				97815F6C1AB9BFFB004DD1E8 /* AppDelegate.h */,
 				97815F6D1AB9BFFB004DD1E8 /* AppDelegate.m */,
 				97815F6E1AB9BFFB004DD1E8 /* InfoPlist.strings */,
@@ -441,6 +444,7 @@
 				97815FA91AB9BFFB004DD1E8 /* PreferenceWindow.xib in Resources */,
 				97815F9C1AB9BFFB004DD1E8 /* status-off@2x.png in Resources */,
 				97815FA41AB9BFFB004DD1E8 /* Ice.entitlements in Resources */,
+				970E05E91AE7D15E00829AB6 /* Media.xcassets in Resources */,
 				97D27DC01ABB019C00874C5A /* IceHelper.entitlements in Resources */,
 				97815F9B1AB9BFFB004DD1E8 /* status-off.png in Resources */,
 				97815F991AB9BFFB004DD1E8 /* InfoPlist.strings in Resources */,
