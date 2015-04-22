@@ -8,9 +8,9 @@
     <session-factory>
 
         <!-- Database connection settings -->
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost/regdb</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/icedb</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.username">iceapp</property>
+        <property name="hibernate.connection.username">iceserver</property>
         <property name="hibernate.connection.password">Pa55WorD</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
 
