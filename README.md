@@ -4,7 +4,15 @@ IceApp is an OSX standalone app for running an ICE server (JBEI [Inventory of Co
 
 ## Installation
 
-1. Download the latest version from the [releases page]()
+Before you get started, make sure you have Java v7 or above installed:
+
+```bash
+java -version
+```
+
+You should see 'java version "1.7.0_67"' or similar. If the number is at least `1.7`, continue with the numbered instructions below. If not, download the latest version of java [here](https://www.java.com/en/download/mac_download.jsp) before continuing.
+
+1. Download the latest version from the [releases page](https://github.com/fathomlabs/IceApp/releases)
 2. Double-click the downloaded `.dmg` file
 3. Drag the `Ice.app` icon into the `/Applications` icon
 4. Open your `Applications` directory and run `Ice.app`
