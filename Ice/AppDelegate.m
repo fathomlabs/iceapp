@@ -159,7 +159,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
         completionHandler(NO, error);
     }
     else if (serverStatus == PostgresServerRunning) {
-        /* apparently the server is already running... Either the user started it manually, or Postgres.app was force quit */
+        /* apparently the server is already running... Either the user started it manually, or Ice.app was force quit */
         completionHandler(YES, nil);
     }
     /*	else if ([self.server stat]) {

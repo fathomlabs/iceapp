@@ -38,7 +38,7 @@
 	}
 	[loginItemCheckbox setState: loginItemEnabled ? NSOnState : NSOffState];
 	
-	BOOL loginItemSupported = [[NSBundle mainBundle].bundlePath isEqualToString:@"/Applications/Postgres.app"];
+	BOOL loginItemSupported = [[NSBundle mainBundle].bundlePath isEqualToString:@"/Applications/Ice.app"];
 	if (loginItemSupported) {
 		loginItemCheckbox.target = self;
 		loginItemCheckbox.action = @selector(toggleLoginItem:);
@@ -50,7 +50,7 @@
 -(IBAction)toggleLoginItem:(id)sender {
 	BOOL loginItemEnabled = (loginItemCheckbox.state == NSOnState);
     
-    NSURL *helperApplicationURL = [[NSBundle mainBundle].bundleURL URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostgresHelper.app"];
+    NSURL *helperApplicationURL = [[NSBundle mainBundle].bundleURL URLByAppendingPathComponent:@"Contents/Library/LoginItems/IceHelper.app"];
     if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
         DDLogError(@"LSRegisterURL Failed");
     }

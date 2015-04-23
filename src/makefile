@@ -1,5 +1,6 @@
 # VERSION numbers
 POSTGRES_VERSION=9.4.1.0
+POSTGRES_MAJOR_VERSION=9.4
 WILDFLY_VERSION=8.2.0
 ICE_VERSION=4.1.12
 BLAST_VERSION=2.2.30+
@@ -13,14 +14,10 @@ all: postgres wildfly ice blast
 ###### PostgresApp ######
 #########################
 
-postgres: /Applications/Postgres.app
-
-/Applications/Postgres.app: Postgres-$(POSTGRES_VERSION).zip
-	unzip -qq -o Postgres-$(POSTGRES_VERSION).zip
-	mv Postgres.app /Applications/Postgres.app
-
-Postgres-$(POSTGRES_VERSION).zip:
-	$(CURL) "https://github.com/PostgresApp/PostgresApp/releases/download/$(POSTGRES_VERSION)/Postgres-$(POSTGRES_VERSION).zip"
+postgres:
+	rm -rf /Applications/Ice.app
+	mkdir -p /Applications/Ice.app/Contents/Versions/postgres-$(POSTGRES_MAJOR_VERSION)/
+	make -C "postgres"
 
 #####################
 ###### WildFly ######

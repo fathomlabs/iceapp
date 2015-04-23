@@ -18,7 +18,7 @@
     dispatch_once(&onceToken, ^{
 		sharedApplicationMover = [[PGApplicationMover alloc] init];
 		sharedApplicationMover.targetFolder = @"/Applications";
-		sharedApplicationMover.targetName = @"Postgres.app";
+		sharedApplicationMover.targetName = @"Ice.app";
     });
     return sharedApplicationMover;
 
@@ -52,7 +52,7 @@
 										 defaultButton:@"Copy"
 									   alternateButton:@"Quit"
 										   otherButton:nil
-							 informativeTextWithFormat:@"Postgres needs to be inside your Applications folder to work properly. Do you want to copy it automatically?%@", sideEffects];
+							 informativeTextWithFormat:@"Ice needs to be inside your Applications folder to work properly. Do you want to copy it automatically?%@", sideEffects];
 		NSInteger returnCode = [alert runModal];
 		if (returnCode != NSAlertDefaultReturn) exit(1);
 		[self copyApplicationAndRelaunch];
@@ -68,7 +68,7 @@
 										 defaultButton:@"Move"
 									   alternateButton:@"Quit"
 										   otherButton:nil
-							 informativeTextWithFormat:@"Postgres needs to be inside your Applications folder to work properly. Do you want to move it automatically?%@", sideEffects];
+							 informativeTextWithFormat:@"Ice needs to be inside your Applications folder to work properly. Do you want to move it automatically?%@", sideEffects];
 		NSInteger returnCode = [alert runModal];
 		if (returnCode != NSAlertDefaultReturn) exit(1);
 		[self moveApplicationAndRelaunch];
@@ -80,11 +80,11 @@
 		if ([fm fileExistsAtPath:targetPath]) {
 			sideEffects = [NSString stringWithFormat:@"\n\nThe application currently named %@ would be renamed to %@",_targetName,self.replacementPathForExistingTarget.lastPathComponent];
 		}
-		NSAlert *alert = [NSAlert alertWithMessageText:@"Rename to Postgres.app?"
+		NSAlert *alert = [NSAlert alertWithMessageText:@"Rename to Ice.app?"
 										 defaultButton:@"Rename"
 									   alternateButton:@"Quit"
 										   otherButton:nil
-							 informativeTextWithFormat:@"%@ must be named ‘Postgres.app’ to function properly. Do you want to rename it automatically?%@", bundlePath.lastPathComponent, sideEffects];
+							 informativeTextWithFormat:@"%@ must be named ‘Ice.app’ to function properly. Do you want to rename it automatically?%@", bundlePath.lastPathComponent, sideEffects];
 		NSInteger returnCode = [alert runModal];
 		if (returnCode != NSAlertDefaultReturn) exit(1);
 		[self moveApplicationAndRelaunch];
@@ -157,7 +157,7 @@
 		for (NSRunningApplication *runningApplication in [[NSWorkspace sharedWorkspace] runningApplications]) {
 			NSString *executablePath = [[runningApplication executableURL] path];
 			if ([executablePath hasPrefix:targetPath]) {
-				NSAlert *alert = [NSAlert alertWithMessageText:@"Application running" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Postgres could not be moved to the Applications folder because the old version is still running."];
+				NSAlert *alert = [NSAlert alertWithMessageText:@"Application running" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Ice could not be moved to the Applications folder because the old version is still running."];
 				[alert runModal];
 				exit(1);
 			}
