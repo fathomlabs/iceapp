@@ -207,7 +207,10 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 		else if (dataDirStatus==PostgresDataDirectoryCompatible) {
 			BOOL serverDidStart = [self startServerWithError:&error];
             
-            DDLogDebug(@"Creating user DB");
+            DDLogDebug(@"Create system user DB");
+            [self createUserDatabaseWithError:&error];
+            
+            DDLogDebug(@"Creating ice user and DB");
             [self createIceUserAndDB:&error];
             
 			if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(serverDidStart, error); });
