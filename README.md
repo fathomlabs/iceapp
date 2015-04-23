@@ -61,5 +61,6 @@ To export your build as an `.app`, use the "Archive" command and then use the "D
 To package the exported app in a pretty `.dmg`, save the archived app to the base directory of the source code, then:
 
 ```bash
+nom install --gloal appdmg
 appdmg dmg.json IceApp.dmg
 ```
