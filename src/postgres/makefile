@@ -43,13 +43,15 @@ postgresql-$(POSTGRES_VERSION)/GNUmakefile: $(PREFIX)/lib/libssl.dylib $(PREFIX)
 
 postgresql-$(POSTGRES_VERSION)/configure: postgresql-$(POSTGRES_VERSION).tar.bz2
 	$(TAR) "postgresql-$(POSTGRES_VERSION).tar.bz2"
+	mv postgresql-$(POSTGRES_VERSION)/GNUMakefile.in postgresql-$(POSTGRES_VERSION)/GNUMakefile.bk
+	sed 's/\,doc /\,/g' postgresql-$(POSTGRES_VERSION)/GNUMakefile.bk > postgresql-$(POSTGRES_VERSION)/GNUMakefile.in
 	touch $@
 
 postgresql-$(POSTGRES_VERSION).tar.bz2:
 	$(CURL) "https://ftp.postgresql.org/pub/source/v$(POSTGRES_VERSION)/postgresql-$(POSTGRES_VERSION).tar.bz2"
 
 clean-postgresql:
-	rm -Rf postgresql-$(POSTGRES_VERSION)
+	make -C "postgresql-$(POSTGRES_VERSION)" clean
 
 
 #########################

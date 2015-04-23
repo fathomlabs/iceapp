@@ -4,20 +4,26 @@ POSTGRES_MAJOR_VERSION=9.4
 WILDFLY_VERSION=8.2.0
 ICE_VERSION=4.1.12
 BLAST_VERSION=2.2.30+
+PG_DIR=/Applications/Ice.app/Contents/Versions/postgres-$(POSTGRES_MAJOR_VERSION)
 
 # commands used for downloading and extracting sources
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 
-all: postgres wildfly ice blast
+all: postgress wildfly ice blast
 
 #########################
 ###### PostgresApp ######
 #########################
 
-postgres:
+postgress:
 	rm -rf /Applications/Ice.app
-	mkdir -p /Applications/Ice.app/Contents/Versions/postgres-$(POSTGRES_MAJOR_VERSION)/
-	make -C "postgres"
+	mkdir -p $(PG_DIR)
+	make -C ./postgres
+	cd $(PG_DIR)/share; for file in $$(grep -ril "\$$libdir" .); \
+	do \
+	sed -e "s/\$$libdir/\/Applications\/Ice.app\/Contents\/Versions\/postgres-$(POSTGRES_MAJOR_VERSION)\/lib/g" $$file > /tmp/tempfile.tmp ;\
+	mv /tmp/tempfile.tmp $$file ;\
+	done
 
 #####################
 ###### WildFly ######
