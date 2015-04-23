@@ -86,7 +86,7 @@
         <customObject id="420" customClass="NSFontManager"/>
         <menu title="Ice" id="553" userLabel="Status Bar Item Menu">
             <items>
-                <menuItem title="ICE: Running on Port 5432" state="on" enabled="NO" id="559">
+                <menuItem title="ICE: Running on Port 8080" state="on" enabled="NO" id="559">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="572"/>

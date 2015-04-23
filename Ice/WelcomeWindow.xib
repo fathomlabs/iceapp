@@ -80,8 +80,8 @@ Look for the ice cube in the menu bar!</string>
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4S-mY-Eyg">
-                        <rect key="frame" x="553" y="24" width="67" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Starting…" id="ogx-LD-XAm">
+                        <rect key="frame" x="522" y="24" width="67" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Starting…" id="ogx-LD-XAm">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -91,7 +91,7 @@ Look for the ice cube in the menu bar!</string>
                         </connections>
                     </textField>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="en1-Cg-4b2">
-                        <rect key="frame" x="531" y="23" width="16" height="16"/>
+                        <rect key="frame" x="594" y="25" width="16" height="16"/>
                         <connections>
                             <binding destination="-2" name="animate" keyPath="isBusy" id="ogn-sQ-E4c"/>
                         </connections>
