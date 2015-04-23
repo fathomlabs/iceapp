@@ -8,7 +8,9 @@ src/*.tar.gz
 src/wildfly*
 src/ncbi*
 src/blast_binaries
-src/Postgres*
+src/postgres/open*
+src/postgres/postgresql*
+src/postgres/libxml*
 tmp/
 *~
 
