@@ -191,6 +191,13 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 				if (completionBlock) dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(NO, error); });
 				return;
 			}
+            
+            BOOL createdUserDatabase = [self createUserDatabaseWithError:&error];
+            if (!createdUserDatabase) {
+                if (completionBlock) {
+                    dispatch_async(dispatch_get_main_queue(), ^{ completionBlock(createdUserDatabase, error); });
+                }
+            }
 
             DDLogDebug(@"Creating user DB");
             BOOL userdbmade = [self createIceUserAndDB:&error];
@@ -360,7 +367,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 	[task launch];
 	NSString *taskError = [[NSString alloc] initWithData:[[task.standardError fileHandleForReading] readDataToEndOfFile] encoding:NSUTF8StringEncoding];
 	[task waitUntilExit];
-	
+    DDLogDebug(@"Userdb create stderr:\n\n%@", taskError);
 	if (task.terminationStatus != 0 && error) {
 		NSMutableDictionary *errorUserInfo = [[NSMutableDictionary alloc] init];
 		errorUserInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"Could not create user database.",nil);
@@ -369,7 +376,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 		errorUserInfo[NSRecoveryAttempterErrorKey] = [[RecoveryAttempter alloc] init];
 		errorUserInfo[@"ServerLogRecoveryOptionIndex"] = @1;
 		errorUserInfo[@"ServerLogPath"] = self.logfilePath;
-		*error = [NSError errorWithDomain:@"com.postgresapp.Postgres.createdb" code:task.terminationStatus userInfo:errorUserInfo];
+		*error = [NSError errorWithDomain:@"com.iceapp.Postgres.createdb" code:task.terminationStatus userInfo:errorUserInfo];
 	}
 	
 	return task.terminationStatus == 0;
