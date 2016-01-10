@@ -150,7 +150,7 @@
     self.isRunning = [self checkIfRunning];
     int fails = 0;
     bool deployed = NO;
-    while (!(self.isRunning) && fails < 5) {
+    while (!deployed && fails < 5) {
         if (fails > 0) {
             DDLogDebug(@"Sleeping for 2 seconds before retrying deployment...");
             sleep(2);

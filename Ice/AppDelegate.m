@@ -182,7 +182,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
             [WelcomeWindowController sharedController].canConnect = YES;
             DDLogInfo(@"wildfly server started");
         } else {
-            NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"Wildfly startup failed.", nil)];
+            NSString *errorMessage = [NSString stringWithFormat:NSLocalizedString(@"Server startup seems to have failed.", nil)];
             [self.iceStatusMenuItemViewController stopAnimatingWithTitle:errorMessage wasSuccessful:NO];
             [WelcomeWindowController sharedController].statusMessage = errorMessage;
             [WelcomeWindowController sharedController].isBusy = NO;
@@ -194,6 +194,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
     };
     
     WildFlyServerStatus serverStatus = [self.wfserver serverStatus];
+    DDLogDebug(@"Server status: %lu", serverStatus);
 
     if (serverStatus == WildFlyServerRunning ||
         serverStatus == WildFlyServerReloadRequired ||
