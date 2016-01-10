@@ -37,4 +37,4 @@ DerivedData
 *.ipa
 *.xcuserstate
 Ice.app
-IceApp.dmg
+*.dmg
