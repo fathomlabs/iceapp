@@ -146,6 +146,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 - (NSTask*) runTaskWithCommand:(NSString*)cmd arguments:(NSArray*)args error:(NSError**)error errorDescription:(NSString*)errDesc errorDomain:(NSString*)errDomain {
     DDLogDebug(@"Running task with cmd: %@", cmd);
     NSTask *controlTask = [[NSTask alloc] init];
+    
     controlTask.launchPath = @"/bin/bash";
     NSString *quotedCmd = [self.binPath stringByAppendingPathComponent:cmd];
     controlTask.arguments = [@[@"-c", quotedCmd] arrayByAddingObjectsFromArray:args];
@@ -236,6 +237,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(PostgresServerStatus)serverStatus {
 	NSTask *psqlTask = [[NSTask alloc] init];
+    
 	psqlTask.launchPath = [self.binPath stringByAppendingPathComponent:@"psql"];
     DDLogDebug(psqlTask.launchPath);
 	psqlTask.arguments = @[
@@ -276,6 +278,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(BOOL)startServerWithError:(NSError**)error {
 	NSTask *controlTask = [[NSTask alloc] init];
+    
 	controlTask.launchPath = [self.binPath stringByAppendingPathComponent:@"pg_ctl"];
 	controlTask.arguments = @[
 		/* control command          */ @"start",
@@ -309,6 +312,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(BOOL)stopServerWithError:(NSError**)error {
 	NSTask *controlTask = [[NSTask alloc] init];
+    
 	controlTask.launchPath = [self.binPath stringByAppendingPathComponent:@"pg_ctl"];
 	controlTask.arguments = @[
 		/* control command         */ @"stop",
@@ -341,6 +345,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(BOOL)initDatabaseWithError:(NSError**)error {
 	NSTask *initdbTask = [[NSTask alloc] init];
+    
 	initdbTask.launchPath = [self.binPath stringByAppendingPathComponent:@"initdb"];
 	initdbTask.arguments = @[
 		/* data directory */ @"-D", self.varPath,
@@ -364,6 +369,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 
 -(BOOL)createUserDatabaseWithError:(NSError**)error {
 	NSTask *task = [[NSTask alloc] init];
+    
 	task.launchPath = [self.binPath stringByAppendingPathComponent:@"createdb"];
 	task.arguments = @[ @"-p", @(self.port).stringValue, NSUserName() ];
 	task.standardError = [[NSPipe alloc] init];

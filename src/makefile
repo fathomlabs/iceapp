@@ -6,10 +6,28 @@ ICE_VERSION=4.1.12
 BLAST_VERSION=2.2.30+
 PG_DIR=/Applications/Ice.app/Contents/Versions/postgres-$(POSTGRES_MAJOR_VERSION)
 
+# There is no JRE version defined here because we always download the
+# most recent release of JRE 1.7 (see download_latest_JRE.ksh)
+#
+# This should be OK because JRE patch versions are never (supposed to be)
+# breaking - and downloading them manually is a pain.
+
 # commands used for downloading and extracting sources
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 
-all: postgress wildfly ice blast
+all: javaruntime postgress wildfly ice blast
+
+####################
+######  Java  ######
+####################
+
+javaruntime:
+	rm -rf jre-*
+	./download_latest_JRE.ksh
+	tar xf jre*gz
+	rm jre*gz
+	mv jre-*/Contents/Home jre
+	rm -rf jre-*
 
 #########################
 ###### PostgresApp ######

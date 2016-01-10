@@ -46,6 +46,21 @@
     _port = port;
     _binPath = binDirectory;
     
+    DDLogDebug(@"JAVA_HOME should be set to %@", [self java_home]);
+    NSMutableDictionary *env = [NSMutableDictionary dictionaryWithObjectsAndKeys: [self java_home], @"JAVA_HOME", nil];
+    
+    NSTask *controlTask = [[NSTask alloc] init];
+    controlTask.launchPath = @"/bin/bash";
+    NSString *quotedCmd = [@"" stringByAppendingPathComponent:@"which java && echo $JAVA_HOME"];
+    controlTask.arguments = @[@"-c", quotedCmd];
+    controlTask.standardOutput = [[NSPipe alloc] init];
+    controlTask.standardError = [[NSPipe alloc] init];
+    [controlTask setEnvironment:env];
+    [controlTask launch];
+    [controlTask waitUntilExit];
+    NSData *responseData = [[controlTask.standardOutput fileHandleForReading] readDataToEndOfFile];
+    DDLogDebug(@"Where it really is: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
     return self;
     
 }
@@ -56,16 +71,24 @@
     return [NSString stringWithFormat:@"\"%@\"", path];
 }
 
+- (id)java_home {
+    return [[NSBundle mainBundle].bundlePath stringByAppendingFormat:@"/Contents/Versions/jre"];
+}
+
 #pragma mark - Command running
 
 - (NSTask*) runTaskWithCommand:(NSString*)cmd arguments:(NSArray*)args error:(NSError**)error errorDescription:(NSString*)errDesc errorDomain:(NSString*)errDomain {
     DDLogDebug(@"Running task with cmd: %@", cmd);
+    
+    NSMutableDictionary *env = [NSMutableDictionary dictionaryWithObjectsAndKeys: [self java_home], @"JAVA_HOME", nil];
+    
     NSTask *controlTask = [[NSTask alloc] init];
     controlTask.launchPath = @"/bin/bash";
     NSString *quotedCmd = [self.binPath stringByAppendingPathComponent:cmd];
     controlTask.arguments = [@[@"-c", quotedCmd] arrayByAddingObjectsFromArray:args];
     controlTask.standardOutput = [[NSPipe alloc] init];
     controlTask.standardError = [[NSPipe alloc] init];
+    [controlTask setEnvironment:env];
     [controlTask launch];
     [controlTask waitUntilExit];
     
@@ -125,7 +148,21 @@
     DDLogDebug(@"Command response: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
     
     self.isRunning = [self checkIfRunning];
-    return [self deployIceApp];
+    int fails = 0;
+    bool deployed = NO;
+    while (!(self.isRunning) && fails < 5) {
+        if (fails > 0) {
+            DDLogDebug(@"Sleeping for 2 seconds before retrying deployment...");
+            sleep(2);
+        }
+        deployed = [self deployIceApp];
+        if (!deployed) {
+            DDLogDebug(@"Deployment failed");
+            ++fails;
+        }
+    }
+    self.isRunning = deployed;
+    return deployed;
 }
 
 - (BOOL) deployIceApp {

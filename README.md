@@ -1,16 +1,16 @@
 # ![Ice icon](https://raw.githubusercontent.com/fathomlabs/IceApp/master/Ice.iconset/icon_32x32%402x.png) IceApp
 
-IceApp is an OSX standalone app for running an ICE server (JBEI [Inventory of Composable Elements](https://github.com/JBEI/ice)). It packages up PostreSQL, JBOSS WildFly Server, and the ICE app itself to make installation and running of a server an easy, user-friendly experience on OSX.
+IceApp is an OSX standalone app for running an ICE server (JBEI [Inventory of Composable Elements](https://github.com/JBEI/ice)). It packages up all the external dependencies and takes care of configuration to make installation and running of an ICE server an easy, user-friendly experience on OSX.
+
+## Packaged dependencies:
+
+- JAVA Runtime Environment (latest 1.7 release at the time of packaging)
+- PostgreSQL
+- JBOSS WildFly Server
+- JBEI ICE
+- NCBI BLAST
 
 ## Installation
-
-Before you get started, make sure you have Java v7 or above installed:
-
-```bash
-java -version
-```
-
-You should see 'java version "1.7.0_67"' or similar. If the number is at least `1.7`, continue with the numbered instructions below. If not, download the latest version of java [here](https://www.java.com/en/download/mac_download.jsp) before continuing.
 
 1. Download the latest version from the [releases page](https://github.com/fathomlabs/IceApp/releases)
 2. Double-click the downloaded `.dmg` file
@@ -55,7 +55,7 @@ cd IceApp
 pod install
 ```
 
-Download and ompile the external dependencies:
+Download and compile the external dependencies:
 
 ```bash
 cd src

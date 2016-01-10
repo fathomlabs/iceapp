@@ -246,7 +246,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 }
 
 - (IBAction)openDocumentation:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://postgresapp.com/documentation"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/fathomlabs/IceApp"]];
 }
 
 - (IBAction)openPreferences:(id)sender {
