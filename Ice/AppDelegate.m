@@ -247,7 +247,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelWarning;
 }
 
 - (IBAction)openDocumentation:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/fathomlabs/IceApp"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://fathomlabs.io/iceapp"]];
 }
 
 - (IBAction)openPreferences:(id)sender {
