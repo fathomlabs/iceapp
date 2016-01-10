@@ -55,7 +55,7 @@ cd IceApp
 pod install
 ```
 
-Download and ompile the external dependencies:
+Download and compile the external dependencies:
 
 ```bash
 cd src
