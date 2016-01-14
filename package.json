@@ -1,6 +1,6 @@
 {
   "gh-pages-deploy": {
-    "staticpath": "docs",
+    "staticpath": "site",
     "noprompt": false
   }
 }
