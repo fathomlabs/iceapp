@@ -26,7 +26,7 @@ javaruntime:
 	./download_latest_JRE.ksh
 	tar xf jre*gz
 	rm jre*gz
-	mv jre-*/Contents/Home jre
+	mv jre*.jre/Contents/Home jre
 	rm -rf jre-*
 
 #########################
